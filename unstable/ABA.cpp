@@ -10,6 +10,7 @@ int incrBrightness(int alpha, int red, int green, int blue)
 	std::cout << std::dec << "Brightness was increased by 10%. New values are: \n A = " << alpha << "\n" << "R = " << red << "\n" << "G = " << green << "\n" << "B = " << blue << "\n";
 	return 0;
 }
+
 int main()
 {
 	uint32_t num = 0x80FFACFF;
