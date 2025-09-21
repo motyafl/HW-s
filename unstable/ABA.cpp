@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdint>
 int incrBrightness(int alpha, int red, int green, int blue)
 {
 	red = red*1.1;
