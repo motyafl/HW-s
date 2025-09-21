@@ -12,22 +12,10 @@ bool chechString(std::string str, int len)
 	return 0;
 }
 
-int outNumber(int arr[], int len)
+bool outNumber(int len, int num)
 {
-	int num;
-	while (true) {
-		std::wcout << L"Введите порядковый номер цифры: ";
-		std::cin >> num;
-		if (num < len) {
-			break;
-		}
-		else {
-			std::wcout << L"Вы ввели неправильный порядковый номер, попробуйте еще раз.\n";
-			continue;
-		}
-	}
-	int out = arr[num-1];
-	return out;
+	if (num <= 0 or num > len) return false;
+	else return true;
 }
 
 int main()
@@ -35,7 +23,6 @@ int main()
 	std::setlocale(LC_ALL, "");
 	std::string str;
 	while (true) {
-		std::cout << str;	
 		std::wcout << L"Введите последовательность цифр (0-9): ";
 		getline(std::cin, str);
 		int len = str.length();
@@ -48,6 +35,18 @@ int main()
 	for (int i = 0; i < len; i++) {
 		arr[i] = str[i] - '0';
 	}
-	int number = outNumber(arr, len);
-	std::wcout << L"Цифра с указанным индексом: " << number << "\n";
+
+	while (true) {
+		int num;
+		std::wcout << L"Введите порядковый номер цифры: ";
+		std::cin >> num;
+		if (outNumber(len, num)) {
+			std::wcout << L"Цифра с индексом " << num << ": " << arr[num - 1] << "\n";
+			break;
+		}
+		else {
+			std::wcout << L"Вы ввели неправильный порядковый номер, попробуйте еще раз.\n";
+			continue;
+		}
+	}
 }
