@@ -11,7 +11,7 @@ int toUpperCase(char a)
 
 int main()
 {
-    std::setlocale(LC_ALL, "Russian");
+    std::setlocale(LC_ALL, "");
     char a;
     std::wcout << L"Введите букву нижнего регистра: ";
     std::cin >> a;
