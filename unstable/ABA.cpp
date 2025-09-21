@@ -23,13 +23,13 @@ int main()
 	int mR = (num>>16) & mask;
 	int mG = (num>>8) & mask;
 	int mB = num & mask;
-	std::wcout << std::dec << "Введенные компоненты в десятичном формате: \nA = " << mA << "\n" << "R = " << mR << "\n" << "G = " << mG << "\n" << "B = " << mB << "\n";
-	std::wcout << std::hex << L"В шетснадцатеричном: \nA = 0x" << mA << "\n" << "R = 0x" << mR << "\n" << "G = 0x" << mG << "\n" << "B = 0x" << mB << "\n";
+	std::wcout << std::dec << L"Введенные компоненты в десятичном формате: \nA = " << mA << "\nR = " << mR << "\nG = " << mG << "\nB = " << mB << "\n";
+	std::wcout << std::hex << L"В шетснадцатеричном: \nA = 0x" << mA << "\nR = 0x" << mR << "\n" << "G = 0x" << mG << "\nB = 0x" << mB << "\n";
 
 	if (mA < 128)
-		std::wcout << L"Цвет полупрозрачный\n";
+		std::wcout << L"Цвет полупрозрачный.\n";
 	else
-		std::wcout << L"Цвет непрозрачный\n";
+		std::wcout << L"Цвет непрозрачный.\n";
 
 	incrBrightness(mA, mR, mG, mB);
 }

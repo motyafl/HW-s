@@ -2,8 +2,7 @@
 int reverseOrder(int arr[], int len)
 {
 	std::wcout << L"Ваш массив в обратном порядке { "; 
-	for (int i = len - 1; i >= 0; i--)
-	{
+	for (int i = len - 1; i >= 0; i--) {
 		std::wcout << arr[i] << " ";
 	}
 	std::wcout << "}\n";
@@ -12,8 +11,7 @@ int reverseOrder(int arr[], int len)
 int main()
 {
 	int len;
-	while(true)
-	{
+	while (true) {
 		std::setlocale(LC_ALL, "");
 		std::wcout << L"Введите размер массива: ";
 		std::cin >> len;
@@ -24,11 +22,9 @@ int main()
 	
 
 	int arr[len];
-	for(int i = 0; i < len; i++)
-	{
+	for (int i = 0; i < len; i++) {
 		double num;//устанавливаем тип double чтобы проверить является ли введенное число целым, т.к. без этого программа просто "обрежет" число
-		while(true)
-		{
+		while (true) {
 			std::wcout << L"Введите " << i+1 << L" число массива: " << len << " " << i << " ";
 			std::cin >> num;
 			if (num != static_cast<int>(num))//проверяем равно ли введенное число его целому эквиваленту
