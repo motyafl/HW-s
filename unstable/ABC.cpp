@@ -25,7 +25,7 @@ int main()
 	for (int i = 0; i < len; i++) {
 		double num;//устанавливаем тип double чтобы проверить является ли введенное число целым, т.к. без этого программа просто "обрежет" число
 		while (true) {
-			std::wcout << L"Введите " << i+1 << L" число массива: " << len << " " << i << " ";
+			std::wcout << L"Введите " << i+1 << L" число массива: ";
 			std::cin >> num;
 			if (num != static_cast<int>(num))//проверяем равно ли введенное число его целому эквиваленту
 			{
@@ -37,6 +37,5 @@ int main()
 		arr[i] = num;
 	}
 
-	std::wcout << L"Вы ввели: " << len << "\n";
 	reverseOrder(arr, len);
 }
