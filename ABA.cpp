@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstdint>
-int incrBrightness(int alpha, int red, int green, int blue)
+int incrBrightness(int &alpha, int *red, int &green, int &blue)
 {
-	red = red*1.1;
+	*red = *red*1.1;
 	green = green*1.1;
 	blue = blue*1.1;
-	if (red > 255) red = 255;
+	if (*red > 255) *red = 255;
 	if (green > 255) green = 255;
 	if (blue > 255) blue = 255;
-	std::wcout << std::dec << L"Яркость была увеличена на 10%. Новые значения компонентов:\nA = " << alpha << "\n" << "R = " << red << "\n" << "G = " << green << "\n" << "B = " << blue << "\n";
+	std::wcout << std::dec << L"Яркость была увеличена на 10%. Новые значения компонентов:\nA = " << alpha << "\n" << "R = " << *red << "\n" << "G = " << green << "\n" << "B = " << blue << "\n";
 	return 0;
 }
 
@@ -32,5 +32,6 @@ int main()
 	else
 		std::wcout << L"Цвет непрозрачный.\n";
 
-	incrBrightness(mA, mR, mG, mB);
+	incrBrightness(mA, &mR, mG, mB);
+	std::wcout << std::dec << mR << mB;
 }
