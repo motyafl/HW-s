@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-bool chechString(std::string str, int len)
+bool chechString(std::string &str, int len)
 {
-	for (int i = 0; i < len; i++) {
-		if (len >= 50 || !isdigit(str[i])) {
+	for (char i : str) {
+		if (len >= 50 || !isdigit(i)) {
 			std::wcout << L"Вы ввели неверное значение или последовательность слишком длинная, попробуйте ввести последовательность еще раз.\n";
 			return true;
 		}
@@ -22,15 +22,17 @@ int main()
 {	
 	std::setlocale(LC_ALL, "");
 	std::string str;
+	int len;
+
 	while (true) {
 		std::wcout << L"Введите последовательность цифр (0-9): ";
 		getline(std::cin, str);
-		int len = str.length();
-		if (chechString(str, len)) continue;
+		int &lenRef = len;
+		lenRef = str.length();
+		if (chechString(str, lenRef)) continue;
 		else break;
 	}
 
-	int len = str.length();
 	int arr[len];
 	for (int i = 0; i < len; i++) {
 		arr[i] = str[i] - '0';
