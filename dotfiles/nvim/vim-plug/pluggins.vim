@@ -9,5 +9,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'OXY2DEV/markview.nvim'
 
 	Plug 'octol/vim-cpp-enhanced-highlight'
+
+	Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
