@@ -3,7 +3,7 @@
 #include <string>
 double userInput()
 {  
-	std::string input;
+	std::char input;
 	std::wcout << L"Введите число: ";
 	std::getline(std::cin, input);	
 
@@ -17,7 +17,7 @@ double userInput()
 }
 bool userQuestion()
 {
-	std::string input;
+	std::string input[50];
 	std::wcout << L"Завершить ввод? (y/Y - да): ";
 	std::getline(std::cin, input);
 
