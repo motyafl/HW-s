@@ -12,10 +12,23 @@ bool chechString(std::string &str, int len)
 	return 0;
 }
 
-bool outNumber(int len, int num)
+int outNumber(int arr[], int len)//мы не знаем конечного размера массива, значит не можем передать его по ссылке...
 {
-	if (num <= 0 or num > len) return false;
-	else return true;
+	while (true) {
+		int num;
+		std::wcout << L"Введите порядковый номер цифры: ";
+		std::cin >> num;
+		//if (outNumber(len, num)) {
+		if (num >= 0 or num < len) {
+			return arr[num-1];
+			//std::wcout << L"Цифра с индексом " << num << ": " << arr[num - 1] << "\n";
+			break;
+		}
+		else {
+			std::wcout << L"Вы ввели неправильный порядковый номер, попробуйте еще раз.\n";
+			continue;
+		}
+	}
 }
 
 int main()
@@ -37,8 +50,10 @@ int main()
 	for (int i = 0; i < len; i++) {
 		arr[i] = str[i] - '0';
 	}
+	//std::wcout << L"Цифра с индексом " << num << ": " << arr[num - 1] << "\n";
+	std::cout << outNumber(arr, len) << '\n' << std::endl;
 
-	while (true) {
+/*	while (true) {
 		int num;
 		std::wcout << L"Введите порядковый номер цифры: ";
 		std::cin >> num;
@@ -50,5 +65,5 @@ int main()
 			std::wcout << L"Вы ввели неправильный порядковый номер, попробуйте еще раз.\n";
 			continue;
 		}
-	}
+	}*/
 }
