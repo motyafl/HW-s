@@ -1,5 +1,20 @@
 #include <iostream>
 #include <cstdint>
+//create array and store A, R, G, and B there from a loop
+
+int lgbtColourArray(int num)
+{	
+	int mask = 0x000000FF;
+	int arr[4];
+	int ord {0};
+	int lgbt;
+	for(int i = 24; i > 0; i -= 8) {
+		lgbt = num >> i;
+		arr[ord] = lgbt & mask;
+		ord ++;
+	}
+	return arr[4];
+}
 int incrBrightness(int &alpha, int *red, int &green, int &blue)
 {
 	*red = *red*1.1;
@@ -34,4 +49,5 @@ int main()
 
 	incrBrightness(mA, &mR, mG, mB);
 	std::wcout << std::dec << mR << mB;
+	int arraying[4] = lgbtColourArray(num);
 }
