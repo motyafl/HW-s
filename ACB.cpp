@@ -4,7 +4,7 @@ int XOR(int max, int key, int arr[])
 	int *pArr = arr;
 	//for (int *pArr = arr; *pArr != '\n'; *pArr++) {
 	//for(int n : int *pArr = arr) {
-		//int keyi = static_const<int>(key);		
+		//int keyi = static_const<int>(key);
 	for (int i = 0; i < max; i++) {
 		*pArr = *pArr ^ key;
 		pArr++;
