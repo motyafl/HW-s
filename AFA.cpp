@@ -29,14 +29,14 @@ class String {
 
     char& operator[](size_t index) {
 	if (index < 0 || index >= size())
-            throw std::out_of_range("String index out of range");
+            throw std::out_of_range("Индекс заходит за границы строки");
         
     	return str[index];
     }
 
     const char& operator[](size_t index) const {
 	if (index < 0 || index >= size())
-            throw std::out_of_range("String index out of range");
+            throw std::out_of_range("Индекс заходит за границы строки");
         
     	return str[index];
     }
@@ -58,15 +58,6 @@ class String {
 	    k++;
 	    NewS[k] = line[i];
 	}
-
-
-	
-	/*
-	std::strcpy(NewS, str);
-
-        // Copy new string
-        std::strcpy(NewS + lenOrig, line);
-	*/
 	delete[] str;
 	str = NewS;
     }
@@ -112,46 +103,30 @@ class String {
         delete[] str;
     }
 };
-/*
-    int &at(int row, int col) { //обращение к значению матрицы
-        if (row < 0 || row >= rows || col < 0 || col >= cols)
-            throw std::out_of_range("Matrix index out of range");
-        return matrix[row][col];
-    }
 
-    String add(const char& other) { //копирование матрицы и запись в копию суммы двух матриц
-        char result(*this);
-        for (int i = 0; i < other.size(); ++i) {
-          result.at(i) = this->at(i);
-        }
-        return result;
-    }
-
-    ~String() {
-        for (int i = 0; i < rows; ++i) {
-            delete[] matrix[i];
-        }
-        delete[] matrix;
-    }*/
-    
-    int String::objCount = 0;
+int String::objCount = 0;
 
 int main()
 {
-    const char* str {"Mira"};
+    setlocale(LC_ALL, "");
+    const char* str {"Hello"};
     String S(str);
-    String F("Miai");
-    String S1(S);
-    String S2(std::move(F));
-    const char* love {"LoveU"};
-    S.append(love);
+    const char* aStr {"World"};
+    S.append(aStr);
     for(int i=0; i < S.size(); i++) {
-	    std::cout << S[i] << std::endl;
+	    std::cout << S[i];
     }
-    int count = String::getObjectCount();
-    std::cout << count << std::endl;
+    std::cout << std::endl;
+    std::cout << "Количество созданных объектов: " << String::getObjectCount() << std::endl;
 
-    const char e = 'i';
-    int symb = S2.nSymbol(e);
-    std::cout << symb << std::endl;
+    String S1(std::move(S));
+    const char e = '!';
+    S1.append(e);
+    for(int i=0; i < S1.size(); i++) {
+	    std::cout << S1[i];
+    }
+    std::cout << std::endl;
+    const char s = 'l';
+    int symb = S1.nSymbol(s);
+    std::cout << "Количество символов " << s << ": " << symb << std::endl;
 }
