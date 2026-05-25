@@ -1,9 +1,9 @@
 #include <iostream>
-int loop(int(&refArr)[], int &refNum, int &refCout)
+int loop(int arr[], int &refNum, int &refCout)
 {
-	
-	for (int i : refArr) {
-		std::cout << i << '\n' << std::endl;
+	int *pArr = arr;
+	for (int i : arr) {
+		std::cout << *pi << '\n' << std::endl;
 	}
 	std::cout << refNum << '\n' << refCout << '\n' << std::endl;
 	return 0;
