@@ -54,8 +54,8 @@ public:
 };
 
 int main() {
-    Date date{25, 5, 2026};
-    TimedTask timedTask("Выполнение базового процесса", date, Priority::HIGH, "2 часа");
+    Date taskDate{25, 5, 2026};
+    TimedTask timedTask("Выполнение базового процесса", taskDate, Priority::HIGH, "2 часа");
     
     Task* taskPtr = &timedTask;
     taskPtr->printInfo();

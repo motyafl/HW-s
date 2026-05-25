@@ -68,7 +68,7 @@ public:
     }
 
 private:
-    using Student::gpa; // Скрытие прямого изменения или доступа к gpa внешними средствами Student
+    using Student::gpa;
 };
 
 int main() {

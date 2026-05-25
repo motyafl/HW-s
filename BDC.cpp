@@ -11,54 +11,54 @@ public:
     Matrix() : data(nullptr), rows(0), cols(0) {}
 
     Matrix(int r, int c) : rows(r), cols(c) {
-        data = new int*[rows];
-        for (int i = 0; i < rows; ++i) {
-            data[i] = new int[cols]{0};
+        this->data = new int*[this->rows];
+        for (int i = 0; i < this->rows; ++i) {
+            this->data[i] = new int[this->cols]{0};
         }
     }
 
     Matrix(const Matrix& other) : rows(other.rows), cols(other.cols) {
         if (other.data != nullptr) {
-            data = new int*[rows];
-            for (int i = 0; i < rows; ++i) {
-                data[i] = new int[cols];
-                for (int j = 0; j < cols; ++j) {
-                    data[i][j] = other.data[i][j];
+            this->data = new int*[this->rows];
+            for (int i = 0; i < this->rows; ++i) {
+                this->data[i] = new int[this->cols];
+                for (int j = 0; j < this->cols; ++j) {
+                    this->data[i][j] = other.data[i][j];
                 }
             }
         } else {
-            data = nullptr;
+            this->data = nullptr;
         }
     }
 
-    ~Matrix() {
-        clear();
+    virtual ~Matrix() {
+        this->clear();
     }
 
     void clear() {
-        if (data != nullptr) {
-            for (int i = 0; i < rows; ++i) {
-                delete[] data[i];
+        if (this->data != nullptr) {
+            for (int i = 0; i < this->rows; ++i) {
+                delete[] this->data[i];
             }
-            delete[] data;
-            data = nullptr;
+            delete[] this->data;
+            this->data = nullptr;
         }
-        rows = 0;
-        cols = 0;
+        this->rows = 0;
+        this->cols = 0;
     }
 
-    int getRows() const { return rows; }
-    int getCols() const { return cols; }
+    int getRows() const { return this->rows; }
+    int getCols() const { return this->cols; }
 
     int* operator[](int index) {
-        if (index < 0 || index >= rows) {
+        if (index < 0 || index >= this->rows) {
             throw std::out_of_range("Индекс строки вышел за границы");
         }
         return this->data[index];
     }
 
     const int* operator[](int index) const {
-        if (index < 0 || index >= rows) {
+        if (index < 0 || index >= this->rows) {
             throw std::out_of_range("Индекс строки вышел за границы");
         }
         return this->data[index];
@@ -66,6 +66,15 @@ public:
 
     operator bool() const {
         return this->data != nullptr && this->rows > 0 && this->cols > 0;
+    }
+
+    void print() const {
+        for (int i = 0; i < this->rows; ++i) {
+            for (int j = 0; j < this->cols; ++j) {
+                std::cout << this->data[i][j] << " ";
+            }
+            std::cout << "\n";
+        }
     }
 
     friend Matrix operator+(const Matrix& a, const Matrix& b);
@@ -103,25 +112,42 @@ public:
     StorageInfo(int count) : nonZeroCount(count) {}
     virtual ~StorageInfo() = default;
 
-    int getNonZeroCount() const { return nonZeroCount; }
+    int getNonZeroCount() const { return this->nonZeroCount; }
 };
 
 class SparseMatrix : public Matrix, public StorageInfo {
 public:
-    SparseMatrix(int r, int c, int nzCount) : Matrix(r, c), StorageInfo(nzCount) {}
+    SparseMatrix(int r, int c, int nzCount) 
+        : Matrix(r, c), StorageInfo(nzCount) {}
 };
 
 int main() {
-    Matrix m1(2, 2);
-    m1[0][0] = 1; m1[0][1] = 2;
-    m1[1][0] = 3; m1[1][1] = 4;
+    try {
+        Matrix m1(2, 2);
+        m1[0][0] = 1; m1[0][1] = 2;
+        m1[1][0] = 3; m1[1][1] = 4;
 
-    if (m1) {
+        if (m1) {
+            std::cout << "Матрица m1 успешно инициализирована. Вывод m1:" << std::endl;
+            m1.print();
+        }
+
+        std::cout << "Сложение матриц (m1 + m1):" << std::endl;
         Matrix m2 = m1 + m1;
-        Matrix m3 = m1 * 3;
-    }
+        m2.print();
 
-    SparseMatrix sm(5, 5, 4);
+        std::cout << "Умножение матрицы на число (m1 * 3):" << std::endl;
+        Matrix m3 = m1 * 3;
+        m3.print();
+
+        std::cout << "Проверка множественного наследования (SparseMatrix):" << std::endl;
+        SparseMatrix sm(5, 5, 4);
+        std::cout << "Размер сетки: " << sm.getRows() << "x" << sm.getCols() << std::endl;
+        std::cout << "Ненулевых элементов: " << sm.getNonZeroCount() << std::endl;
+
+    } catch (const std::exception& e) {
+        std::cout << "Исключение: " << e.what() << std::endl;
+    }
     return 0;
 }
 

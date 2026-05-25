@@ -3,7 +3,7 @@
 class Shape {
 private:
     void draw() {
-        std::cout << "Drawing shape" << std::endl;
+        std::cout << "Отрисовка фигуры" << std::endl;
     }
 
 public:
@@ -13,7 +13,7 @@ public:
 class Circle : public Shape {
 public:
     void draw() {
-        std::cout << "Drawing circle" << std::endl;
+        std::cout << "Отрисовка круга" << std::endl;
     }
 };
 
@@ -27,7 +27,9 @@ void processShape(Shape* shape) {
 int main() {
     Circle circle;
     Shape* shapePtr = &circle;
+    
     processShape(shapePtr);
+    
     return 0;
 }
 
