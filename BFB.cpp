@@ -19,7 +19,7 @@ namespace MathStructure {
         explicit DimensionMismatchException(const std::string& msg) : MatrixException(msg) {}
     };
 
-    class Matrix {
+class Matrix {
     private:
         int rows;
         int cols;
@@ -54,7 +54,7 @@ namespace MathStructure {
             --createdCount;
         }
 
-        Matrix& operator=(const Matrix& other) {
+        Matrix& operator=(const Matrix& other) { 
             if (this != &other) {
                 for (int i = 0; i < rows; ++i) {
                     delete[] this->data[i];
