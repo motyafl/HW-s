@@ -3,58 +3,58 @@
 
 int main() {
 
-int n;
-char arr[500];
+	int n;
+	char arr[500];
 
-// -- Producing a binary number from how pigeons head is pointed -- //
+	// -- Producing a binary number from how pigeons head is pointed -- //
 
-std::cin >> n;
-std::cin >> arr;
-std::cin.ignore();
+	std::cin >> n;
+	std::cin >> arr;
+	std::cin.ignore();
 
-int c=n/2, k=n/2, b=n-1;
-std::bitset<100> ar{};
-/*
-   where c and k is for produing the masks 0011 and 0101 respectively
-   b is for bit setting in a binary number ar to turn ><<> into  1001
-*/
+	int c=n/2, k=n/2, b=n-1;
+	std::bitset<100> ar{};
+	/*
+	   where c and k is for produing the masks 0011 and 0101 respectively
+	   b is for bit setting in a binary number ar to turn ><<> into  1001
+	*/
 
 
-for( char i : arr ) {
-    switch (i) {
-        case 62: ar.set(b);b--;break;
-        case 60: b--;break;
-    } // bits are set from right to left just like the char arr[] is read
-}
+	for( char i : arr ) {
+	    switch (i) {
+		case 62: ar.set(b);b--;break;
+		case 60: b--;break;
+	    } // bits are set from right to left just like the char arr[] is read
+	}
 
-//std::cout << std::bitset<16>(ar) << std::endl;
+	//std::cout << std::bitset<16>(ar) << std::endl;
 
-// ------------- The working part of the algorithm ---------------- //
+	// ------------- The working part of the algorithm ---------------- //
 
-std::bitset<100> m1 = 0, m3 = 0;
+	std::bitset<100> m1 = 0, m3 = 0;
 
-while (c--) {
-    m1 = (m1 << 1) | std::bitset<100>(1); // equivalent to m1 = m1 * 1 + 1
-}
+	while (c--) {
+	    m1 = (m1 << 1) | std::bitset<100>(1); // equivalent to m1 = m1 * 1 + 1
+	}
 
-while (k--) {
-    m3 = (m3 << 2) | std::bitset<100>(1); // equivalent to m3 = m3 * 4 + 1
-}
+	while (k--) {
+	    m3 = (m3 << 2) | std::bitset<100>(1); // equivalent to m3 = m3 * 4 + 1
+	}
 
-// Flipping only first n bits
-std::bitset<100> total_mask;
-for (int i = 0; i < n; i++) total_mask.set(i);
+	// Flipping only first n bits
+	std::bitset<100> total_mask;
+	for (int i = 0; i < n; i++) total_mask.set(i);
 
-std::bitset<100> m2 = total_mask ^ m1;
-std::bitset<100> m4 = total_mask ^ m3;
+	std::bitset<100> m2 = total_mask ^ m1;
+	std::bitset<100> m4 = total_mask ^ m3;
 
-int c1 = (m1 ^ ar).count();
-int c2 = (m2 ^ ar).count();
-int c3 = (m3 ^ ar).count();
-int c4 = (m4 ^ ar).count();
+	int c1 = (m1 ^ ar).count();
+	int c2 = (m2 ^ ar).count();
+	int c3 = (m3 ^ ar).count();
+	int c4 = (m4 ^ ar).count();
 
-std::cout << ( ((c1 >= c2) ? c2 : c1) >= ((c3 >= c4) ? c4 : c3) ?
-               ((c3 >= c4) ? c4 : c3) : ((c1 >= c2) ? c2 : c1) ) << std::endl;
+	std::cout << ( ((c1 >= c2) ? c2 : c1) >= ((c3 >= c4) ? c4 : c3) ?
+		       ((c3 >= c4) ? c4 : c3) : ((c1 >= c2) ? c2 : c1) ) << std::endl;
 
 /* Explaining the trenary operators:
 

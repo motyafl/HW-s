@@ -28,7 +28,7 @@ int main() {
         for ( int i = 0; i < 8; i++ ) {
                 while(temp[7-i] > 0) {
                         temp[8]--;
-                        Q += divs[i] * std::round(std::pow(10, temp[8]));
+                        Q += divs[i] * std::pow(10, temp[8]);
                         temp[7-i]--;
                 }
         }
